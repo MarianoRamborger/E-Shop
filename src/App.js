@@ -13,6 +13,7 @@ import Footer from './Footer/Footer.js'
 import HomeShop from './Shop/HomeShop.js'
 import HomeShop2 from './Shop/HomeShop2.js'
 
+
 //https://www.freecodecamp.org/news/state-management-with-react-hooks/
 
 
@@ -38,6 +39,9 @@ const reducer = (state, action) => {
 }
 
 
+
+
+
 //El hook propiamente dicho. Devuelve el estado, y dispatch. Dispatch es la función para llamar a las acciones en el reductor.
 
 const App = () => {
@@ -52,11 +56,13 @@ const App = () => {
       <Router>
 
            <Header />
+           
+         
 
         <Switch>
 
    
-          <Route path exact="/">
+          <Route exact path ="/">
             <HomeShop />
           </Route>
 

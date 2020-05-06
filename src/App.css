@@ -44,3 +44,25 @@
   bottom: 0;
   left: 0;
 }
+
+.centered {
+  display: flex;
+  flex-direction: row;
+  text-align: justify;
+  justify-content: center;
+  
+}
+
+.shopDiv {
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    
+    
+}
+
+.card {
+  margin: 10px;
+  width: 200px;
+}

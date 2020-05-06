@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -109,6 +111,7 @@ export default function PrimarySearchAppBar() {
 
  // Función de Login temporal. Modifica el estado del Provider desde el Consumer
  const LogIn = () => {
+    handleMobileMenuClose()
     isLogged.dispatch({
     type: "LOGIN",
     payload: "eee"
@@ -116,10 +119,13 @@ export default function PrimarySearchAppBar() {
 
 const LogOut = () => {
   handleMenuClose()
+  handleMobileMenuClose()
   isLogged.dispatch({
   type: "LOGOUT"
   
 })}
+
+const isLogged = useContext(AuthContext) /* CONTEXT */
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -159,6 +165,10 @@ const LogOut = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+
+    {
+      isLogged.state.isAuthenticated ?
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -170,10 +180,16 @@ const LogOut = () => {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+      :
+      <Button variant="contained" color="primary" onClick={LogIn}> LOGIN </Button>
+    }
+
+
+    
     </Menu>
   );
 
-  const isLogged = useContext(AuthContext) /* CONTEXT */
+  
 
 
   
@@ -221,6 +237,13 @@ const LogOut = () => {
 
 
           {/* Desktop Profile*/}
+          
+          <IconButton
+          color="inherit"
+          >
+          <ShoppingCartIcon />
+          </IconButton>
+          
           { 
             isLogged.state.isAuthenticated 
           ? 
@@ -243,6 +266,11 @@ const LogOut = () => {
 
         {/* Mobile Profile */}
           <div className={classes.sectionMobile}>
+          <IconButton
+          color="inherit"
+          >
+          <ShoppingCartIcon />
+          </IconButton>
             <IconButton
               aria-label="show more"
               aria-controls={mobileMenuId}
