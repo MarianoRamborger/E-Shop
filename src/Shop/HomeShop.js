@@ -80,7 +80,7 @@ const HomeShop = () => {
             {
                 DB.map(data =>{
 
-                    console.log(data)
+                    
                 
                 return <Card 
                     key = {data.id}

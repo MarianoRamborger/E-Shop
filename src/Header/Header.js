@@ -1,12 +1,12 @@
 import React, {useContext} from 'react'; //Vital para usar context
 import { fade, makeStyles } from '@material-ui/core/styles';
+import { AuthContext } from '../App';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -14,8 +14,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Drawer from './Drawer'
-import { AuthContext } from '../App';
 import Button from '@material-ui/core/Button'
+import ShoppingCart from '../Shop/Cart/ShoppingCart'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -239,9 +239,15 @@ const isLogged = useContext(AuthContext) /* CONTEXT */
           {/* Desktop Profile*/}
           
           <IconButton
-          color="inherit"
-          >
-          <ShoppingCartIcon />
+          color="inherit">
+          
+              
+          
+          <ShoppingCart  />
+          
+          
+          
+          
           </IconButton>
           
           { 
@@ -269,7 +275,7 @@ const isLogged = useContext(AuthContext) /* CONTEXT */
           <IconButton
           color="inherit"
           >
-          <ShoppingCartIcon />
+          <ShoppingCart />
           </IconButton>
             <IconButton
               aria-label="show more"

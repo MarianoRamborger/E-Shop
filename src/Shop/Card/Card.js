@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react'; //Vital para usar context
+import {shoppingCartContext} from '../../App';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,6 +11,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AddShoppingCartSharpIcon from '@material-ui/icons/AddShoppingCartSharp';
 import ZoomInSharpIcon from '@material-ui/icons/ZoomInSharp';
+
+
+
 
 const useStyles = makeStyles({
   root: {
@@ -21,6 +26,19 @@ const useStyles = makeStyles({
 
 export default function SingleCard(props) {
   const classes = useStyles();
+
+  
+const ShopListAdd = () => {
+    ShopList.dispatch2({
+        type: "ADD"
+    })
+}
+
+const ShopList = useContext(shoppingCartContext) /* CONTEXT */
+  
+//why shopping cart context me vuelve undefined
+
+
 
   return (
     <Card className={`${classes.root} card`} id={props.id}>
@@ -41,7 +59,7 @@ export default function SingleCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          <AddShoppingCartSharpIcon />
+          <AddShoppingCartSharpIcon onClick={ShopListAdd} />
         </Button>
         <Button size="small" color="primary">
           <ZoomInSharpIcon />
