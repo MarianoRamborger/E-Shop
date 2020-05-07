@@ -24,7 +24,7 @@ const initialState = { isAuthenticated: false, user: null, token: null };
 
 export const shoppingCartContext = React.createContext();
 
-const shoppingCartInitialState = { shoppingList : ["s"] }
+const shoppingCartInitialState = { shoppingList : [] }
 
 
 //Ojo que no es el hook si no la función.
@@ -51,9 +51,37 @@ const reducer = (state, action) => {
 const shoppingCartReducer = (state2, action2) => {
   switch (action2.type) {
 
-    case "ADD": console.log("e")
-    return {...state2.shoppingList }
+    case "ADD": 
 
+    let newProduct = true;
+
+    for (let index = 0; index < state2.shoppingList.length; index++) {
+    
+      if  (state2.shoppingList[index].productId === action2.info.productId) {
+  
+        newProduct = false
+       
+        state2.shoppingList[index].cantidad++  
+      }}
+       
+      if (newProduct === false) {
+      return {
+        ...state2
+      }
+    }
+    if (newProduct === true) {
+
+      // PLAIN ADD
+    return  {shoppingList : state2.shoppingList.push(
+      
+        action2.info
+          //Ver como pasar bien los props
+    ), ...state2 }}
+    //Tomá nota de lo que solía ser este bug: array.push mete el nuevo elemento al final, y devuelve el length del array. Si devolvías el ...state2 antes, 
+    //te quedabas, en vez de con el array, con el length. Por eso se devuelve después.
+     break
+     
+  
     default: console.log("default")
     return {...state2.shoppingList}
 
@@ -82,19 +110,15 @@ const App = () => {
     > 
 
     <shoppingCartContext.Provider 
-    value = {{state, dispatch2}}
+    value = {{state2, dispatch2}}
     >
     
 
       <Router>
-
            <Header />
            
-         
-
         <Switch>
 
-   
           <Route exact path ="/">
             <HomeShop />
           </Route>
@@ -107,11 +131,9 @@ const App = () => {
             <h2> 404 NOT FOUND  </h2>
           </Route>
 
-         
-
         </Switch>
 
-          <Footer />
+         <Footer />
 
       </Router>
 

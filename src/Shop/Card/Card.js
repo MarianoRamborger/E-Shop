@@ -30,7 +30,10 @@ export default function SingleCard(props) {
   
 const ShopListAdd = () => {
     ShopList.dispatch2({
-        type: "ADD"
+        type: "ADD",
+        info: {...props, cantidad: 1 
+        }
+
     })
 }
 

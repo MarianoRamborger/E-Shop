@@ -239,8 +239,9 @@ const isLogged = useContext(AuthContext) /* CONTEXT */
           {/* Desktop Profile*/}
           
           <IconButton
-          color="inherit">
-          
+          color="inherit"
+          >
+            
               
           
           <ShoppingCart  />
@@ -275,7 +276,7 @@ const isLogged = useContext(AuthContext) /* CONTEXT */
           <IconButton
           color="inherit"
           >
-          <ShoppingCart />
+          {/* <ShoppingCart /> */}
           </IconButton>
             <IconButton
               aria-label="show more"

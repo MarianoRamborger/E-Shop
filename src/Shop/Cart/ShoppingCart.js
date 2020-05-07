@@ -1,16 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {shoppingCartContext} from '../../App'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Item from './Item'
+
 
 
 const useStyles = makeStyles({
@@ -22,11 +20,15 @@ const useStyles = makeStyles({
   },
 });
 
+
+
 export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    bottom: false,
+    right: false,
   });
+
+  const shopList = useContext(shoppingCartContext)
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -47,21 +49,22 @@ export default function SwipeableTemporaryDrawer() {
     >
       <List>
         <ListItem>  <h3>   Mi Carrito  </h3> </ListItem>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+
+      {
+
+         shopList.state2.shoppingList.map(data => {
+      
+           return <Item props={data} key={data.productId} />
+         } 
+         )
+        
+       
+      }
+    
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+    
       </List>
     </div>
   );

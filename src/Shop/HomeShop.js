@@ -8,7 +8,8 @@ const DB = [
         "title":"Manzana",
         "image":"https://choosemyplate-prod.azureedge.net/sites/default/files/myplate/foodgallerycupoz/apples.gif",
         "price":"1",
-        "desc":"Roja!"
+        "desc":"Roja!",
+        "stock": "99"
      
     },
      {
@@ -16,7 +17,8 @@ const DB = [
         "title":"Manzana",
         "image":"https://image.shutterstock.com/image-photo/green-apple-on-white-background-260nw-692320789.jpg",
         "price":"3",
-        "desc":"Verde"
+        "desc":"Verde",
+        "stock": "99"
      
     },
     {
@@ -24,7 +26,8 @@ const DB = [
         "title":"Manzana",
         "image":"https://previews.123rf.com/images/artemkutsenko/artemkutsenko1812/artemkutsenko181200055/115249728-fresh-wet-golden-apple-fruit-isolated-on-white-background.jpg",
         "price":"3",
-        "desc":"Dorada"
+        "desc":"Dorada",
+        "stock": "99",
      
     },
     {
@@ -32,7 +35,8 @@ const DB = [
         "title":"Manzana",
         "image":"https://i.pinimg.com/originals/e0/fe/1c/e0fe1c0ebd2f75d5f682b058142618fd.jpg",
         "price":"3",
-        "desc":"Azul??"
+        "desc":"Azul??",
+        "stock": "99"
      
     },
     {
@@ -40,7 +44,8 @@ const DB = [
         "title":"Banana",
         "image":"https://www.kroger.com/product/images/xlarge/front/0000000004011",
         "price":"3",
-        "desc":"Pa variar"
+        "desc":"Pa variar",
+        "stock": "99"
      
     },
     {
@@ -48,7 +53,8 @@ const DB = [
         "title":"No Mandarinas",
         "image":"https://www.nbnaturalcare.com/wp-content/uploads/2018/11/mandarina.jpg",
         "price":"3",
-        "desc":"No"
+        "desc":"No",
+        "stock": "99"
      
     },
     {
@@ -56,7 +62,8 @@ const DB = [
         "title":"Durazno",
         "image":"https://www.elnacional.com/wp-content/uploads/2018/01/durazno-tiene-multiples-propiedades-medicinales_221238-696x526.jpg",
         "price":"3",
-        "desc":"La Mejor Fruta"
+        "desc":"La Mejor Fruta",
+        "stock": "99"
      
     },
     {
@@ -64,7 +71,8 @@ const DB = [
         "title":"Ciruela",
         "image":"https://elpoderdelconsumidor.org/wp-content/uploads/2015/04/ciruelas-_rojas-3.jpg",
         "price":"3",
-        "desc":"Cuando el durazno está caro"
+        "desc":"Cuando el durazno está caro",
+        "stock": "99"
      
     }
     
@@ -84,6 +92,7 @@ const HomeShop = () => {
                 
                 return <Card 
                     key = {data.id}
+                    productId = {data.id}
                     title = {data.title}
                     image = {data.image}
                     price = {data.price}
