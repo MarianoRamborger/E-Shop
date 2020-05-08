@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {shoppingCartContext} from '../../App'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import DeleteIcon from '@material-ui/icons/Delete';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,9 +39,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
 export default function MediaControlCard(props) {
   const classes = useStyles();
   const theme = useTheme();
+
+  const shopList = useContext(shoppingCartContext)
+
+
+  const plusOne = () => {
+    shopList.dispatch2({
+      type: "PLUSONE",
+      info: {...props.props}
+  
+    })
+  }
+
+  const remove = () => {
+    shopList.dispatch2 ({
+      type: "REMOVE",
+      info: {...props.props}
+    })
+  }
+
+  const minusOne = () => {
+    shopList.dispatch2 ({
+      type: "MINUSONE",
+      info: {...props.props}
+    })
+  }
+
 
   return (
 
@@ -55,13 +86,13 @@ export default function MediaControlCard(props) {
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <IconButton >
-                <AddIcon />
+          <IconButton onClick={ plusOne } >
+                <AddIcon  />
           </IconButton>
-          <IconButton >
+          <IconButton onClick={minusOne} >
                 <RemoveIcon />
           </IconButton>
-          <IconButton >
+          <IconButton onClick={remove} >
                 <DeleteIcon />
           </IconButton>
         

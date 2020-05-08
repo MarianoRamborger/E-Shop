@@ -52,44 +52,56 @@ const shoppingCartReducer = (state2, action2) => {
   switch (action2.type) {
 
     case "ADD": 
-
     let newProduct = true;
-
     for (let index = 0; index < state2.shoppingList.length; index++) {
-    
       if  (state2.shoppingList[index].productId === action2.info.productId) {
-  
-        newProduct = false
-       
+        newProduct = false    
         state2.shoppingList[index].cantidad++  
       }}
-       
       if (newProduct === false) {
       return {
         ...state2
-      }
-    }
-    if (newProduct === true) {
-
-      // PLAIN ADD
-    return  {shoppingList : state2.shoppingList.push(
-      
-        action2.info
-          //Ver como pasar bien los props
-    ), ...state2 }}
-    //Tomá nota de lo que solía ser este bug: array.push mete el nuevo elemento al final, y devuelve el length del array. Si devolvías el ...state2 antes, 
-    //te quedabas, en vez de con el array, con el length. Por eso se devuelve después.
+      }}
+    if (newProduct === true) {  
+    return  {shoppingList : state2.shoppingList.push(action2.info  ), ...state2 }} //Tomá nota de lo que solía ser este bug: array.push mete el nuevo elemento al final, y devuelve el length del array. Si devolvías el ...state2 antes,  te quedabas, en vez de con el array, con el length. Por eso se devuelve después.
      break
+
+    case "PLUSONE": 
+
+    for (let index = 0; index < state2.shoppingList.length; index++) {
      
-  
+      if (state2.shoppingList[index].productId === action2.info.productId) {
+    
+        state2.shoppingList[index].cantidad++
+      }}
+      return { ...state2}
+      
+      case "REMOVE":
+
+        for (let index = 0; index < state2.shoppingList.length; index++) {
+          if (state2.shoppingList[index].productId === action2.info.productId) {
+    
+            state2.shoppingList.pop([index], 1)
+          }}
+        
+        return { ...state2}
+
+      case "MINUSONE":
+        for (let index = 0; index < state2.shoppingList.length; index++) {
+          if (state2.shoppingList[index].productId === action2.info.productId) {
+            if (state2.shoppingList[index].cantidad === 1) { state2.shoppingList.pop([index], 1) }
+            else {state2.shoppingList[index].cantidad-- }
+          }}
+          return { ...state2}
+
+        
+   
+      
+       
+
     default: console.log("default")
     return {...state2.shoppingList}
-
-
-
-  }
-
-}
+  }}
 
 
 

@@ -8,7 +8,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Item from './Item'
-
+import CloseIcon from '@material-ui/icons/Close';
+import { IconButton } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
@@ -44,11 +45,15 @@ export default function SwipeableTemporaryDrawer() {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      // onClick={toggleDrawer(anchor, false)}
+      // onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem>  <h3>   Mi Carrito  </h3> </ListItem>
+        <ListItem>  <h3>   Mi Carrito  </h3> 
+         <IconButton onClick={toggleDrawer(anchor, false)}>
+         <CloseIcon  />
+        </IconButton> 
+         </ListItem>
 
       {
 
@@ -76,6 +81,7 @@ export default function SwipeableTemporaryDrawer() {
         <React.Fragment key={anchor}>
           <ShoppingCartIcon onClick={toggleDrawer(anchor, true)} className="icono" > {anchor}</ShoppingCartIcon>
           <SwipeableDrawer
+           
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}

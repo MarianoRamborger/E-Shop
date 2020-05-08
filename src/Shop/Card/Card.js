@@ -61,8 +61,8 @@ const ShopList = useContext(shoppingCartContext) /* CONTEXT */
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          <AddShoppingCartSharpIcon onClick={ShopListAdd} />
+        <Button size="small" color="primary" onClick={ShopListAdd}>
+          <AddShoppingCartSharpIcon  />
         </Button>
         <Button size="small" color="primary">
           <ZoomInSharpIcon />
