@@ -67,3 +67,42 @@
   margin: 10px;
   width: 200px;
 }
+
+.drawerLink {
+  width: 100%;
+}
+
+.product-list {
+  max-height: 65%;
+  overflow-y: scroll
+}
+
+.cart-list {
+  overflow-y: hidden;
+}
+
+.checkout-list {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.modal-form {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+}
+
+.modal-input {
+  width: 60%;
+  margin-bottom: 8px;
+}
+
+.modal-button {
+  width: 40%;
+  align-self: center;
+}
+
+.form-error-text {
+  color: red;
+  width: 60%
+}

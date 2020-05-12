@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {shoppingCartContext} from '../../App'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+//import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MediaControlCard(props) {
   const classes = useStyles();
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const shopList = useContext(shoppingCartContext)
 
@@ -75,7 +76,7 @@ export default function MediaControlCard(props) {
   return (
 
     <Card className={classes.root}>
-    {console.dir(props.props)}
+  
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">

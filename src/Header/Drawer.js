@@ -11,6 +11,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
+import {  Link
+} from "react-router-dom";
 
 const useStyles = makeStyles({
   list: {
@@ -24,7 +26,7 @@ const useStyles = makeStyles({
 export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    bottom: false,
+    left: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -45,12 +47,21 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        
+        
+
+        <ListItem button >
+        <Link to="../" className="drawerLink"> Ofertas</Link>
+        </ListItem>
+
+        <ListItem button >
+        <Link to="/Frutas" className="drawerLink"> Frutas </Link>
+        </ListItem>
+
+        <ListItem button >
+        <Link to="/Verduras" className="drawerLink"> Verduras </Link>
+        </ListItem>
+        
       </List>
       <Divider />
       <List>
@@ -67,7 +78,7 @@ export default function SwipeableTemporaryDrawer() {
   return (
     <div>
     
-      {['bottom'].map((anchor) => (
+      {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
           <MenuIcon onClick={toggleDrawer(anchor, true)} className="icono" > {anchor}</MenuIcon>
           <SwipeableDrawer

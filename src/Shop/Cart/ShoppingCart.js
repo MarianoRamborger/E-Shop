@@ -23,6 +23,8 @@ const useStyles = makeStyles({
 
 
 
+
+
 export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -40,25 +42,30 @@ export default function SwipeableTemporaryDrawer() {
   };
 
   const list = (anchor) => (
+    // Here cart-list la clase para avoidear el overflow
     <div
-      className={clsx(classes.list, {
+      className={clsx(`${classes.list} cart-list`,   {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
       // onClick={toggleDrawer(anchor, false)}
       // onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
+      <List className="cart-list">
         <ListItem>  <h3>   Mi Carrito  </h3> 
          <IconButton onClick={toggleDrawer(anchor, false)}>
          <CloseIcon  />
         </IconButton> 
          </ListItem>
+      </List>
+      <Divider />
+      <List className="product-list">
 
       {
 
          shopList.state2.shoppingList.map(data => {
       
+           
            return <Item props={data} key={data.productId} />
          } 
          )
@@ -68,7 +75,15 @@ export default function SwipeableTemporaryDrawer() {
     
       </List>
       <Divider />
-      <List>
+      <List >
+      <ListItem >
+
+      
+    
+      <h3> Total : ${shopList.state2.total} </h3>
+       
+
+      </ListItem>
     
       </List>
     </div>

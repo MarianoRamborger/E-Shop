@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'; //Vital para usar context
+import React, {useContext, useState} from 'react'; //Vital para usar context
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { AuthContext } from '../App';
 
@@ -16,6 +16,11 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Drawer from './Drawer'
 import Button from '@material-ui/core/Button'
 import ShoppingCart from '../Shop/Cart/ShoppingCart'
+import Badge from '@material-ui/core/Badge';
+import {shoppingCartContext} from '../App'
+import Modal from '../Modal/Modal'
+
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -81,11 +86,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  
+  const [isModalOpen, toggleModal] = useState(false)
+
+
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -107,7 +117,18 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleModelToggler = () => {
+    if (isModalOpen === false)  { toggleModal(true) }
+    if (isModalOpen === true) {toggleModal(false)}
+    
+  }
+
+ 
+
+
 // desktop
+
+  
 
  // Función de Login temporal. Modifica el estado del Provider desde el Consumer
  const LogIn = () => {
@@ -127,12 +148,14 @@ const LogOut = () => {
 
 const isLogged = useContext(AuthContext) /* CONTEXT */
 
+const cartContext = useContext(shoppingCartContext)
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
 
     
 
-    
+  
 
     <Menu
       anchorEl={anchorEl}
@@ -242,13 +265,8 @@ const isLogged = useContext(AuthContext) /* CONTEXT */
           color="inherit"
           >
             
-              
-          
-          <ShoppingCart  />
-          
-          
-          
-          
+           <Badge badgeContent={cartContext.state2.shoppingList.length} color="secondary"> <ShoppingCart/> </Badge>
+           
           </IconButton>
           
           { 
@@ -265,8 +283,16 @@ const isLogged = useContext(AuthContext) /* CONTEXT */
             <AccountCircle />
             </IconButton>    
           :
-            <Button variant="contained" color="primary" onClick={LogIn}> LOGIN </Button>
+          ///////////////////
+          //////////////////////////////////////////
+            <React.Fragment>
+            <Button variant="contained" color="primary" onClick={handleModelToggler}> LOGIN   
+             </Button>
+             <Modal modalState={isModalOpen} handleModalToggler={handleModelToggler} LogIn={LogIn}  /> 
+             
+             </React.Fragment>
           } 
+
           </div>
 
 

@@ -10,9 +10,8 @@ import {
 import './App.css';
 import Header from './Header/Header.js'
 import Footer from './Footer/Footer.js'
-import HomeShop from './Shop/HomeShop.js'
-import HomeShop2 from './Shop/HomeShop2.js'
 
+import Shop from './Shop/Shop'
 
 
 //https://www.freecodecamp.org/news/state-management-with-react-hooks/
@@ -24,7 +23,7 @@ const initialState = { isAuthenticated: false, user: null, token: null };
 
 export const shoppingCartContext = React.createContext();
 
-const shoppingCartInitialState = { shoppingList : [] }
+const shoppingCartInitialState = { shoppingList : [], total : 0 }
 
 
 //Ojo que no es el hook si no la función.
@@ -57,13 +56,16 @@ const shoppingCartReducer = (state2, action2) => {
       if  (state2.shoppingList[index].productId === action2.info.productId) {
         newProduct = false    
         state2.shoppingList[index].cantidad++  
+        state2.total += action2.info.price
+        
       }}
       if (newProduct === false) {
       return {
         ...state2
       }}
-    if (newProduct === true) {  
-    return  {shoppingList : state2.shoppingList.push(action2.info  ), ...state2 }} //Tomá nota de lo que solía ser este bug: array.push mete el nuevo elemento al final, y devuelve el length del array. Si devolvías el ...state2 antes,  te quedabas, en vez de con el array, con el length. Por eso se devuelve después.
+    if (newProduct === true) { state2.total += action2.info.price  
+    return  {shoppingList : state2.shoppingList.push(action2.info),  ...state2 }} //Tomá nota de lo que solía ser este bug: array.push mete el nuevo elemento al final, y devuelve el length del array. Si devolvías el ...state2 antes,  te quedabas, en vez de con el array, con el length. Por eso se devuelve después.
+
      break
 
     case "PLUSONE": 
@@ -73,6 +75,7 @@ const shoppingCartReducer = (state2, action2) => {
       if (state2.shoppingList[index].productId === action2.info.productId) {
     
         state2.shoppingList[index].cantidad++
+        state2.total += action2.info.price
       }}
       return { ...state2}
       
@@ -81,7 +84,9 @@ const shoppingCartReducer = (state2, action2) => {
         for (let index = 0; index < state2.shoppingList.length; index++) {
           if (state2.shoppingList[index].productId === action2.info.productId) {
     
-            state2.shoppingList.pop([index], 1)
+            let removePrice = state2.shoppingList[index].price * state2.shoppingList[index].cantidad
+            state2.total -= removePrice
+            state2.shoppingList.splice([index], 1)
           }}
         
         return { ...state2}
@@ -89,8 +94,8 @@ const shoppingCartReducer = (state2, action2) => {
       case "MINUSONE":
         for (let index = 0; index < state2.shoppingList.length; index++) {
           if (state2.shoppingList[index].productId === action2.info.productId) {
-            if (state2.shoppingList[index].cantidad === 1) { state2.shoppingList.pop([index], 1) }
-            else {state2.shoppingList[index].cantidad-- }
+            if (state2.shoppingList[index].cantidad === 1) { state2.shoppingList.splice([index], 1); state2.total -= action2.info.price }
+            else {state2.shoppingList[index].cantidad-- ; state2.total -= action2.info.price }
           }}
           return { ...state2}
 
@@ -100,7 +105,7 @@ const shoppingCartReducer = (state2, action2) => {
        
 
     default: console.log("default")
-    return {...state2.shoppingList}
+    return {...state2}
   }}
 
 
@@ -131,13 +136,22 @@ const App = () => {
            
         <Switch>
 
-          <Route exact path ="/">
-            <HomeShop />
+    
+          <Route exact path="/">
+            <Shop  title={"Ofertas"} target={true} />
           </Route>
 
-          <Route path="/2">
-            <HomeShop2 />
+          <Route path="/Frutas">
+            <Shop  title={"Frutas"} target={"fruta"} />
           </Route>
+        
+
+          <Route path="/Verduras">
+            <Shop title={"Verduras"} target={"verdura"} />
+          </Route>
+
+
+
 
           <Route path="*">
             <h2> 404 NOT FOUND  </h2>
