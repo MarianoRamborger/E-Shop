@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -42,8 +42,6 @@ const reducer = (state, action) => {
       default: return state
   }
 }
-
-
 
 
 
@@ -110,6 +108,7 @@ const shoppingCartReducer = (state2, action2) => {
 
 
 
+
 //El hook propiamente dicho. Devuelve el estado, y dispatch. Dispatch es la función para llamar a las acciones en el reductor.
 
 const App = () => {
@@ -117,6 +116,12 @@ const App = () => {
   //Acá iria el reducer del shopping Cart
 
   const [state2, dispatch2] = React.useReducer(shoppingCartReducer, shoppingCartInitialState )
+
+  const [searchBarState, changeSearchBarState] = useState("")
+
+  const handleSearchBarState = (event) => {
+    changeSearchBarState(event.target.value)
+  }
  
   return (
     
@@ -132,22 +137,22 @@ const App = () => {
     
 
       <Router>
-           <Header />
+           <Header handleSearchBarState={handleSearchBarState} />
            
         <Switch>
 
     
           <Route exact path="/">
-            <Shop  title={"Ofertas"} target={true} />
+            <Shop  title={"Ofertas"} target={true} search={searchBarState}/>
           </Route>
 
           <Route path="/Frutas">
-            <Shop  title={"Frutas"} target={"fruta"} />
+            <Shop  title={"Frutas"} target={"fruta"} search={searchBarState} />
           </Route>
         
 
           <Route path="/Verduras">
-            <Shop title={"Verduras"} target={"verdura"} />
+            <Shop title={"Verduras"} target={"verdura"} search={searchBarState} />
           </Route>
 
 

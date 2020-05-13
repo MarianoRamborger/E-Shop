@@ -56,7 +56,7 @@ const ShopList = useContext(shoppingCartContext) /* CONTEXT */
             {props.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            ${props.price}`
+            ${props.price}
           </Typography>
         </CardContent>
       </CardActionArea>

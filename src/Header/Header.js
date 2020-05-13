@@ -22,6 +22,7 @@ import Modal from '../Modal/Modal'
 
 
 
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -89,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -123,12 +124,12 @@ export default function PrimarySearchAppBar() {
     
   }
 
+
+
  
 
 
 // desktop
-
-  
 
  // Función de Login temporal. Modifica el estado del Provider desde el Consumer
  const LogIn = () => {
@@ -191,7 +192,7 @@ const cartContext = useContext(shoppingCartContext)
 
     {
       isLogged.state.isAuthenticated ?
-
+  
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -201,10 +202,18 @@ const cartContext = useContext(shoppingCartContext)
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        
       </MenuItem>
+    
+
+
       :
-      <Button variant="contained" color="primary" onClick={LogIn}> LOGIN </Button>
+      <div>
+            <Button className="login-button" onClick={handleModelToggler}> LOGIN   
+             </Button>
+             <Modal modalState={isModalOpen} handleModalToggler={handleModelToggler} LogIn={LogIn}  /> 
+             </div>
+             
     }
 
 
@@ -222,9 +231,9 @@ const cartContext = useContext(shoppingCartContext)
 
 
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static"  >
 
-        <Toolbar>
+        <Toolbar className="toolbar-color" >
 
         {/* DrawerToggler */}
           <IconButton
@@ -245,13 +254,15 @@ const cartContext = useContext(shoppingCartContext)
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
+            <InputBase 
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
+                
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={props.handleSearchBarState}
             />
           </div>
           
@@ -261,12 +272,8 @@ const cartContext = useContext(shoppingCartContext)
 
           {/* Desktop Profile*/}
           
-          <IconButton
-          color="inherit"
-          >
-            
+          <IconButton color="inherit"> 
            <Badge badgeContent={cartContext.state2.shoppingList.length} color="secondary"> <ShoppingCart/> </Badge>
-           
           </IconButton>
           
           { 
@@ -286,7 +293,7 @@ const cartContext = useContext(shoppingCartContext)
           ///////////////////
           //////////////////////////////////////////
             <React.Fragment>
-            <Button variant="contained" color="primary" onClick={handleModelToggler}> LOGIN   
+            <Button  className="login-button" onClick={handleModelToggler}> LOGIN   
              </Button>
              <Modal modalState={isModalOpen} handleModalToggler={handleModelToggler} LogIn={LogIn}  /> 
              
@@ -302,6 +309,7 @@ const cartContext = useContext(shoppingCartContext)
           <IconButton
           color="inherit"
           >
+            <Badge badgeContent={cartContext.state2.shoppingList.length} color="secondary"> <ShoppingCart/> </Badge>  
           {/* <ShoppingCart /> */}
           </IconButton>
             <IconButton

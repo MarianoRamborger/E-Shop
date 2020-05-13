@@ -50,6 +50,7 @@
   flex-direction: row;
   text-align: justify;
   justify-content: center;
+  margin: 15px 0px
   
 }
 
@@ -105,4 +106,45 @@
 .form-error-text {
   color: red;
   width: 60%
+}
+
+.drawerLink {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  margin: 5px 0px;
+}
+
+
+
+.MuiAppBar-colorPrimary, .modal-button {
+  color: whitesmoke !important;
+  background-color: #538D22 !important;
+}
+
+.modal-button {
+  font-weight: bold !important;
+  margin-top: 10px !important;
+}
+
+
+.login-button {
+  color: whitesmoke !important;
+  font-weight: bold !important;
+  border-radius: 25px !important;
+  margin: 0px 3px !important;
+  padding: 0 20px !important;
+}
+
+
+
+body {
+  background-color: #DDF4CB !important
+}
+
+
+.shop-title {
+  color: #538D22;
+  font-weight: bolder;
+  font-size: 2em;
 }

@@ -10,6 +10,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Item from './Item'
 import CloseIcon from '@material-ui/icons/Close';
 import { IconButton } from '@material-ui/core';
+import Button from '@material-ui/core/Button'
 
 
 const useStyles = makeStyles({
@@ -77,12 +78,11 @@ export default function SwipeableTemporaryDrawer() {
       <Divider />
       <List >
       <ListItem >
-
-      
-    
       <h3> Total : ${shopList.state2.total} </h3>
-       
+      </ListItem>
 
+      <ListItem >
+        <Button variant="disabled" color="primary">  Check-out (backend pendiente) </Button>
       </ListItem>
     
       </List>
