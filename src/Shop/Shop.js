@@ -34,7 +34,7 @@ const HomeShop = (props) => {
 
                     if (props.search !== '') {
                         
-                        if (data.title.toLowerCase().startsWith(props.search)) {
+                        if (data.title.toLowerCase().startsWith(props.search.toLowerCase())) {
                            
                            if (data.oferta  === props.target || data.type === props.target )  { 
                             let cantidad = 0
