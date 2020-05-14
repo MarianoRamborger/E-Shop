@@ -19,6 +19,7 @@ import ShoppingCart from '../Shop/Cart/ShoppingCart'
 import Badge from '@material-ui/core/Badge';
 import {shoppingCartContext} from '../App'
 import Modal from '../Modal/Modal'
+import ClearIcon from '@material-ui/icons/Clear';
 
 
 
@@ -221,8 +222,7 @@ const cartContext = useContext(shoppingCartContext)
     </Menu>
   );
 
-  
-
+ 
 
   
   return (
@@ -255,6 +255,7 @@ const cartContext = useContext(shoppingCartContext)
               <SearchIcon />
             </div>
             <InputBase 
+              id="searchBarInput"
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
@@ -263,9 +264,10 @@ const cartContext = useContext(shoppingCartContext)
               }}
               inputProps={{ 'aria-label': 'search' }}
               onChange={props.handleSearchBarState}
-            />
+             />
+            
           </div>
-          
+          <ClearIcon  onClick={props.clearSearchBar}/>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
 

@@ -163,6 +163,12 @@ const App = () => {
   const handleSearchBarState = (event) => {
     changeSearchBarState(event.target.value)
   }
+
+  const handleCleanSearchBar = () => {
+    changeSearchBarState("")
+    let searchBar = document.getElementById("searchBarInput")
+    searchBar.value = ""
+  }
  
   return (
     
@@ -178,7 +184,7 @@ const App = () => {
     
 
       <Router>
-           <Header handleSearchBarState={handleSearchBarState} />
+           <Header handleSearchBarState={handleSearchBarState}  clearSearchBar={handleCleanSearchBar}/>
            
         <Switch>
 
