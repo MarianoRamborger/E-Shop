@@ -143,16 +143,16 @@ const App = () => {
 
     
           <Route exact path="/">
-            <Shop  title={"Ofertas"} target={true} search={searchBarState}/>
+            <Shop  title={"Ofertas"} target={true} search={searchBarState} reset={0}/>
           </Route>
 
           <Route path="/Frutas">
-            <Shop  title={"Frutas"} target={"fruta"} search={searchBarState} />
+            <Shop  title={"Frutas"} target={"fruta"} search={searchBarState} reset={0}/>
           </Route>
         
 
           <Route path="/Verduras">
-            <Shop title={"Verduras"} target={"verdura"} search={searchBarState} />
+            <Shop title={"Verduras"} target={"verdura"} search={searchBarState} reset={0}/>
           </Route>
 
 

@@ -9,9 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import AddShoppingCartSharpIcon from '@material-ui/icons/AddShoppingCartSharp';
-import ZoomInSharpIcon from '@material-ui/icons/ZoomInSharp';
-
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 
 
@@ -37,9 +36,16 @@ const ShopListAdd = () => {
     })
 }
 
+const ShopListRemove = () => {
+  ShopList.dispatch2({
+    type: "MINUSONE",
+    info: {...props}
+  })
+}
+
 const ShopList = useContext(shoppingCartContext) /* CONTEXT */
   
-//why shopping cart context me vuelve undefined
+
 
 
 
@@ -62,10 +68,13 @@ const ShopList = useContext(shoppingCartContext) /* CONTEXT */
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary" onClick={ShopListAdd}>
-          <AddShoppingCartSharpIcon  />
+          <AddIcon className="shop-icons"  />
         </Button>
-        <Button size="small" color="primary">
-          <ZoomInSharpIcon />
+        <Typography variant="body2" color="textSecondary" component="p">
+            {props.cantidad}
+          </Typography>
+        <Button size="small" color="primary" onClick={ShopListRemove}>
+          <RemoveIcon className="shop-icons"  />
         </Button>
       </CardActions>
     </Card>

@@ -148,3 +148,17 @@ body {
   font-weight: bolder;
   font-size: 2em;
 }
+
+.shop-icons {
+  color: #538D22
+}
+
+#drawer-div, #shopping-cart-div{
+  background: whitesmoke !important;
+  height: 100%;
+}
+
+.list-topper-item {
+  background-color: #538D22 ;
+  color: whitesmoke 
+}

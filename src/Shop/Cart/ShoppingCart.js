@@ -45,6 +45,7 @@ export default function SwipeableTemporaryDrawer() {
   const list = (anchor) => (
     // Here cart-list la clase para avoidear el overflow
     <div
+      id = {"shopping-cart-div"}
       className={clsx(`${classes.list} cart-list`,   {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
@@ -53,9 +54,9 @@ export default function SwipeableTemporaryDrawer() {
       // onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className="cart-list">
-        <ListItem>  <h3>   Mi Carrito  </h3> 
+        <ListItem className={"list-topper-item"} >  <h3>   Mi Carrito  </h3> 
          <IconButton onClick={toggleDrawer(anchor, false)}>
-         <CloseIcon  />
+         <CloseIcon className={"list-topper-item"} />
         </IconButton> 
          </ListItem>
       </List>
@@ -82,7 +83,7 @@ export default function SwipeableTemporaryDrawer() {
       </ListItem>
 
       <ListItem >
-        <Button variant="disabled" color="primary">  Check-out (backend pendiente) </Button>
+        <Button disabled={true} color="primary">  Check-out (backend pendiente) </Button>
       </ListItem>
     
       </List>
