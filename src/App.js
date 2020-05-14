@@ -86,8 +86,16 @@ const shoppingCartReducer = (state2, action2) => {
           newProduct2 = false    
           let removePrice = state2.shoppingList[index].price * state2.shoppingList[index].cantidad
           state2.total -= removePrice
+
+          console.log(action2.info.cantidad)
+          if (action2.info.cantidad ===  0) {
+            console.log("2www")
+            state2.shoppingList.splice([index], 1)
+
+          } else {
           state2.shoppingList[index].cantidad = action2.info.cantidad   
           state2.total += action2.info.price * action2.info.cantidad
+        }
           
         }}
         if (newProduct2 === false) {
@@ -95,9 +103,17 @@ const shoppingCartReducer = (state2, action2) => {
           ...state2
 
         }}
-      if (newProduct2 === true) { state2.total += action2.info.cantidad * action2.info.price  
-      return  {shoppingList : state2.shoppingList.push(action2.info),  ...state2 }} //Tomá nota de lo que solía ser este bug: array.push mete el nuevo elemento al final, y devuelve el length del array. Si devolvías el ...state2 antes,  te quedabas, en vez de con el array, con el length. Por eso se devuelve después.
+        
+        if (newProduct2 === true && action2.info.cantidad === 0 )  {
+          return {...state2}
+        }
+
+      if (newProduct2 === true  )  {
+        if (state2.info === undefined) {console.log("ooopse")}
+         state2.total += action2.info.cantidad * action2.info.price  
+      return  {shoppingList : state2.shoppingList.push(action2.info),  ...state2 }} 
   
+
        break
 
 
