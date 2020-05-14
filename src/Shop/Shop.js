@@ -35,8 +35,9 @@ const HomeShop = (props) => {
                     if (props.search !== '') {
                         
                         if (data.title.toLowerCase().startsWith(props.search)) {
-                            
+                           
                            if (data.oferta  === props.target || data.type === props.target )  { 
+                            let cantidad = 0
                             cardCount++
                             return <Card 
                                 key = {data.id}
@@ -45,6 +46,20 @@ const HomeShop = (props) => {
                                 image = {data.image}
                                 price = {data.price}
                                 desc = {data.desc}
+                                stock = {data.stock}
+
+                                {...shopList.state2.shoppingList.map(Qdata => {
+
+                                    if (Qdata.productId === data.id) {
+                                        cantidad = Qdata.cantidad
+                                        return null
+                                    
+                                    
+                                    } else return null
+                                    })}
+
+                                    cantidad = {cantidad}
+                                
                                 
                                 
                             />
@@ -72,6 +87,7 @@ const HomeShop = (props) => {
                         image = {data.image}
                         price = {data.price}
                         desc = {data.desc}
+                        stock = {data.stock}
 
                         
 

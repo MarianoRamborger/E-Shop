@@ -61,8 +61,10 @@ const ShopList = useContext(shoppingCartContext) /* CONTEXT */
 
 
 const onChangeHandler = (event) => {
-  
-    if ( !isNaN(event.target.value)) {
+    
+    if ( !isNaN(event.target.value) && event.target.value <= props.stock && !event.target.value.includes(".") ) {
+      
+
       targetNumber(event.target.value)
     }
    
