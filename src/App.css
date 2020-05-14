@@ -162,3 +162,11 @@ body {
   background-color: #538D22 ;
   color: whitesmoke 
 }
+
+.quantity-form {
+  max-width: 15%;
+}
+
+.quantity-input {
+  max-width: 15%
+}

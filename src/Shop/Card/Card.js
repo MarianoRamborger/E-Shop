@@ -14,6 +14,8 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 
 
+
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -43,9 +45,28 @@ const ShopListRemove = () => {
   })
 }
 
-const ShopList = useContext(shoppingCartContext) /* CONTEXT */
-  
 
+const targetNumber = (number) => {
+  ShopList.dispatch2({
+    type: "TARGETNUMBER",
+    info: {...props, cantidad: number}
+  })
+}
+
+
+
+const ShopList = useContext(shoppingCartContext) /* CONTEXT */
+
+
+
+
+const onChangeHandler = (event) => {
+  
+    if ( !isNaN(event.target.value)) {
+      targetNumber(event.target.value)
+    }
+   
+}
 
 
 
@@ -67,14 +88,14 @@ const ShopList = useContext(shoppingCartContext) /* CONTEXT */
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={ShopListAdd}>
-          <AddIcon className="shop-icons"  />
-        </Button>
-        <Typography variant="body2" color="textSecondary" component="p">
-            {props.cantidad}
-          </Typography>
         <Button size="small" color="primary" onClick={ShopListRemove}>
           <RemoveIcon className="shop-icons"  />
+        </Button>
+      
+            <input  className="quantity-input" value={props.cantidad} onChange={onChangeHandler} onBlur={console.log("w")}   />
+           
+        <Button size="small" color="primary" onClick={ShopListAdd}>
+          <AddIcon className="shop-icons"  />
         </Button>
       </CardActions>
     </Card>
