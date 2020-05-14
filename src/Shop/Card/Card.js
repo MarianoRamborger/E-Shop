@@ -92,7 +92,7 @@ const onChangeHandler = (event) => {
           <RemoveIcon className="shop-icons"  />
         </Button>
       
-            <input  className="quantity-input" value={props.cantidad} onChange={onChangeHandler} onBlur={console.log("w")}   />
+            <input  className="quantity-input" value={props.cantidad} onChange={onChangeHandler}    />
            
         <Button size="small" color="primary" onClick={ShopListAdd}>
           <AddIcon className="shop-icons"  />
