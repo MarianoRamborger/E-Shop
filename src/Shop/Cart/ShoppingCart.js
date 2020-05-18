@@ -56,7 +56,7 @@ export default function SwipeableTemporaryDrawer() {
       <List className="cart-list">
         <ListItem className={"list-topper-item"} >  <h3>   Mi Carrito  </h3> 
          <IconButton onClick={toggleDrawer(anchor, false)}>
-         <CloseIcon className={"list-topper-item"} />
+         <CloseIcon className={"close-icon"} />
         </IconButton> 
          </ListItem>
       </List>

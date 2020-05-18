@@ -99,8 +99,8 @@ export default function MediaControlCard(props) {
         
         </div>
       </div>
-      <CardMedia
-        className={classes.cover}
+      <CardMedia 
+        className={`shopping-cart-item-image ${classes.cover}`}
         image={`${props.props.image}`}
         title={`${props.props.title}`}
       />

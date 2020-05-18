@@ -168,9 +168,9 @@ const cartContext = useContext(shoppingCartContext)
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={LogOut}>Log Out</MenuItem>
+      <MenuItem onClick={handleMenuClose} className="profile-menu-button">Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose} className="profile-menu-button">My account</MenuItem>
+      <MenuItem onClick={LogOut} className="profile-menu-button">Log Out</MenuItem>
 
     </Menu>
 
@@ -199,7 +199,7 @@ const cartContext = useContext(shoppingCartContext)
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          className="account-circle"
         >
           <AccountCircle />
         </IconButton>
@@ -210,7 +210,7 @@ const cartContext = useContext(shoppingCartContext)
 
       :
       <div>
-            <Button className="login-button" onClick={handleModelToggler}> LOGIN   
+            <Button className="login-button mobile-login" onClick={handleModelToggler}> LOGIN   
              </Button>
              <Modal modalState={isModalOpen} handleModalToggler={handleModelToggler} LogIn={LogIn}  /> 
              </div>
@@ -230,10 +230,10 @@ const cartContext = useContext(shoppingCartContext)
     
 
 
-    <div className={classes.grow}>
+    <div className={classes.grow} >
       <AppBar position="static"  >
 
-        <Toolbar className="toolbar-color" >
+        <Toolbar className="toolbar-color" id="header-bar" >
 
         {/* DrawerToggler */}
           <IconButton
@@ -274,7 +274,7 @@ const cartContext = useContext(shoppingCartContext)
 
           {/* Desktop Profile*/}
           
-          <IconButton color="inherit"> 
+          <IconButton className="shopping-cart-icon" > 
            <Badge badgeContent={cartContext.state2.shoppingList.length} color="secondary"> <ShoppingCart/> </Badge>
           </IconButton>
           
@@ -287,7 +287,7 @@ const cartContext = useContext(shoppingCartContext)
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              className= "account-circle"
             >
             <AccountCircle />
             </IconButton>    
@@ -309,7 +309,7 @@ const cartContext = useContext(shoppingCartContext)
         {/* Mobile Profile */}
           <div className={classes.sectionMobile}>
           <IconButton
-          color="inherit"
+          className ="shopping-cart-icon"
           >
             <Badge badgeContent={cartContext.state2.shoppingList.length} color="secondary"> <ShoppingCart/> </Badge>  
           {/* <ShoppingCart /> */}
@@ -319,7 +319,7 @@ const cartContext = useContext(shoppingCartContext)
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
+              className="mobile-dot-menu"
             >
               <MoreIcon />
             </IconButton>
